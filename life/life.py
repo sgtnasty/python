@@ -5,13 +5,24 @@ import os
 import sys
 import random
 
+adenine = 'A'
+cytosine = 'C'
+guanine = 'G'
+thymine = 'T'
+nucleicAcid = ['A', 'G', 'C', 'T']
+
+
+def getNucleicAcid(r):
+    return str(nucleicAcid[r.randint(0, 3)])
+
 
 def main():
     print('life begins')
     r = random.SystemRandom()
     for i in range(r.randrange(1, 256)):
-        v = r.randint(1, 256)
-        print('%d: %d' % (i, v))
+        nucleicAcid = getNucleicAcid(r)
+        print(nucleicAcid, end='')
+    print('')
 
 
 if __name__ == "__main__":
@@ -23,4 +34,6 @@ if __name__ == "__main__":
     except IndexError as err:
         print("IndexError: %s" % err)
     except:
-        print("Unexpected error: %s" % sys.exc_info()[0])
+        ei = sys.exc_info()
+        print("Unexpected error: %s" % ei[0])
+        print(repr(ei))
