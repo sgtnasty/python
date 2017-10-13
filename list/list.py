@@ -31,7 +31,7 @@ def config_args():
 
 
 def ftime(filepath):
-    print('File         :', filepath)
+    print('File         : {}'.format(filepath))
     print('Access time  :', time.ctime(os.path.getatime(filepath)))
     print('Modified time:', time.ctime(os.path.getmtime(filepath)))
     print('Change time  :', time.ctime(os.path.getctime(filepath)))
