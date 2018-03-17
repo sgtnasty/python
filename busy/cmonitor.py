@@ -38,8 +38,20 @@ def mon_slice():
 def monitor(log):
     while True:
         time.sleep(random.random())
-        log.info('process {}'.format(uuid.uuid4()))
-        log.debug(mon_slice())
+        xsel = [1,   2,   3,   4,   5]
+        xwei = [0.3, 0.1, 0.1, 0.3, 0.2]
+        x = random.choices(xsel, xwei)[0]
+        log.debug('weight={}'.format(x))
+        if x == 1:
+            log.info('process {}'.format(uuid.uuid4()))
+        elif x == 2:
+            log.warn('interrupt 0x93')
+        elif x == 3:
+            log.error('internal register corruption: 0x4343d3')
+        elif x == 4:
+            log.debug(mon_slice())
+        else:
+            log.info('continue processing on to next slice')
         time.sleep(random.random() / 2)
 
 if __name__ == "__main__":
