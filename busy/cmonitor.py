@@ -41,7 +41,7 @@ def monitor(log):
         xsel = [1,   2,   3,   4,   5]
         xwei = [0.3, 0.1, 0.1, 0.3, 0.2]
         x = random.choices(xsel, xwei)[0]
-        log.debug('weight={}'.format(x))
+        #log.debug('weight={}'.format(x))
         if x == 1:
             log.info('process {}'.format(uuid.uuid4()))
         elif x == 2:
