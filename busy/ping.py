@@ -6,6 +6,7 @@ import time
 import logging
 import uuid
 import socket
+import binascii
 
 
 def get_remote_ip():
@@ -53,13 +54,31 @@ def pdumpg(source_ip, dest_ip):
     time.sleep(random.random())
 
 
+def trace_tree(source_ip, dest_ip):
+    x = binascii.hexlify(os.urandom(32))
+    print(x)
+    sv = 0
+    for i in range(random.randint(8, 32)):
+        cluster = ''
+        for j in range(64):
+            r = random.choices(['-', '*', '+', '~'], weights=[55, 15, 20, 10])
+            cluster += r[0]
+        hexstr = hex(sv)
+        print('{}: {}'.format(hexstr.rjust(8), cluster))
+        sv += 32
+        time.sleep(random.random())
+
+
 def main():
     try:
         i = random.randint(1024, 233433)
         source_ip = get_remote_ip()
         while True:
             dest_ip = rndip()
+            print('decoding sequence')
+            trace_tree(source_ip, dest_ip)
             c = range(random.randint(2, 9))
+            print('sending packet')
             for i in c:
                 pcount()
             pres(i+1, source_ip, dest_ip)
