@@ -61,12 +61,12 @@ def trace_tree(source_ip, dest_ip):
     for i in range(random.randint(8, 32)):
         cluster = ''
         for j in range(64):
-            r = random.choices(['-', '*', '+', '~'], weights=[55, 15, 20, 10])
+            r = random.choices(['.', '*', '+', '~'], weights=[65, 15, 15, 5])
             cluster += r[0]
         hexstr = hex(sv)
         print('{}: {}'.format(hexstr.rjust(8), cluster))
         sv += 32
-        time.sleep(random.random())
+        time.sleep(random.random()/2.0)
 
 
 def main():
