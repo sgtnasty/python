@@ -9,7 +9,7 @@ int main ()
     float ExamValue, Sum, Avg;
     int students, exams;
 
-    // Loop thru Students until name == blank
+    // Loop thru Students until name equals the character 0
 
     while(1)
     {
