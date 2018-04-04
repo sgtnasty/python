@@ -3,7 +3,6 @@
 import os
 import random
 import time
-import logging
 import uuid
 import socket
 import binascii
@@ -14,7 +13,7 @@ def get_remote_ip():
     s.connect(("8.8.8.8", 80))
     r = s.getsockname()
     print(repr(r))
-    remote_ip = '{}'.format(r[0])
+    # remote_ip = '{}'.format(r[0])
     s.close()
     return r[0]
 
@@ -27,7 +26,7 @@ def pcount():
 
 def rndip():
     a = 10
-    #a = random.randint(10, 254)
+    # a = random.randint(10, 254)
     b = random.randint(10, 254)
     c = random.randint(10, 254)
     d = random.randint(10, 254)
@@ -36,7 +35,7 @@ def rndip():
 
 def pres(i, source_ip, dest_ip):
     iid = i
-    ttl = hex(random.randint(13,255))
+    ttl = hex(random.randint(13, 255))
     print("Vr HL TOS  Len   ID   Flg  off TTL Pro  cks      Src      Dst")
     print("4  5  00   5400  {}   0 0000  {}  01 5ac6 {}  {}".format(
         iid, ttl, source_ip, dest_ip))
@@ -66,7 +65,7 @@ def trace_tree(source_ip, dest_ip):
         hexstr = hex(sv)
         print('{}: {}'.format(hexstr.rjust(8), cluster))
         sv += 32
-        time.sleep(random.random()/2.0)
+        time.sleep(random.random() / 2.0)
 
 
 def main():
@@ -78,16 +77,17 @@ def main():
             print('decoding sequence')
             trace_tree(source_ip, dest_ip)
             c = range(random.randint(2, 9))
-            print('sending packet')
+            print('sending packet {}'.format(uuid.uuid4()))
             for i in c:
                 pcount()
-            pres(i+1, source_ip, dest_ip)
+            pres(i + 1, source_ip, dest_ip)
             if (random.choice([1, 2, 5]) is 1):
                 c = range(random.randint(1, 19))
                 for i in c:
                     pdumpg(source_ip, dest_ip)
     except KeyboardInterrupt:
         print('done')
+
 
 if __name__ == '__main__':
     main()
